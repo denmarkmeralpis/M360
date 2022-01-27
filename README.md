@@ -1,8 +1,5 @@
 # M360
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/m360`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A plugin that helps you use M360 APIs using the Ruby language.
 
 ## Installation
 
@@ -22,7 +19,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+For Globelabs users
+
+```ruby
+client = M360::SMS::Globelabs.new(
+    passphrase: 'your-passphrase-here',
+    correlator: 'correlator',
+    sender: 'masking-name-here',
+    address: '9123456789',
+    message: 'Hello, World!'
+)
+
+# sends http request to m360s API
+client.call
+
+# check if successful
+client.success?
+```
+
+You may also use your environement variables to set `passphrase`, `correlator` and `sender`.
+
+```ruby
+ENV['M360_GLABS_PASSPHRASE']
+ENV['M360_GLABS_CORRELATOR']
+ENV['M360_GLABS_SENDER']
+```
 
 ## Development
 
