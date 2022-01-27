@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'securerandom'
 
 module M360
   module SMS
@@ -12,8 +13,8 @@ module M360
 
       def initialize(options = {})
         @passphrase = options.fetch(:passphrase, ENV['M360_GLABS_PASSPHRASE'])
-        @correlator = options.fetch(:correlator, ENV['M360_GLABS_CORRELATOR'])
         @sender = options.fetch(:sender, ENV['M360_GLABS_SENDER'])
+        @correlator = options[:correlator]
         @address = options.fetch(:address)
         @message = options.fetch(:message)
       end
@@ -44,7 +45,7 @@ module M360
       def outbound_message_payload
         {
           outboundSMSMessageRequest: {
-            clientCorrelator: @correlator,
+            clientCorrelator: (@correlator || SecureRandom.uuid),
             senderAddress: @sender,
             address: @address,
             outboundSMSTextMessage: {

@@ -37,11 +37,10 @@ client.call
 client.success?
 ```
 
-You may also use your environement variables to set `passphrase`, `correlator` and `sender`.
+You may also use your environement variables to set `passphrase` and `sender`.
 
 ```ruby
 ENV['M360_GLABS_PASSPHRASE']
-ENV['M360_GLABS_CORRELATOR']
 ENV['M360_GLABS_SENDER']
 ```
 
