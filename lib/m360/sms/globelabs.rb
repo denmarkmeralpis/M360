@@ -38,7 +38,8 @@ module M360
         @perform_request ||= self.class.post(
           "/v3/api/globelabs/mt/#{@passphrase}",
           body: outbound_message_payload,
-          headers: { 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' },
+          verify: false
         )
       end
 
